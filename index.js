@@ -17,11 +17,11 @@ Options:    [
 question :"Quelle propriété CSS est utilisée pour changer la couleur du texte ?",
 Options:    [
 
-    "A) color" ,
+    "A)color" ,
     " B)font-color",
-   " C) text-color",
+   " C)text-color",
 ],
-correctAnswer:" C) text-color",
+correctAnswer:" C)text-color",
 },
 
 {
@@ -93,7 +93,6 @@ correctAnswer:"A) p {}",
         "C) <break>",
     ],
     correctAnswer:"A) <hr>",
-    
     },
     {
 
@@ -104,9 +103,7 @@ correctAnswer:"A) p {}",
             "C) <break>",
         ],
         correctAnswer:"A) background-color",
-        
-        },
-
+        }
 ]
 
 const questionplace=document.getElementById("question");
@@ -117,15 +114,48 @@ const option3=document.getElementById("Ans3");
 var Resultat=0;
 var NbQ=1;
 function rempliData(){
+    if (NbQ-1 < Questions.length) {
 questionplace.textContent=Questions[NbQ-1].question;
 option1.textContent=Questions[NbQ-1].Options[0];
 option2.textContent=Questions[NbQ-1].Options[1];
 option3.textContent=Questions[NbQ-1].Options[2];
 }
+   else {
+    alert(Resultat)
+}
+
+}
+rempliData();
+option1.addEventListener('click',(e)=>{
+
+    if(e.target.textContent==Questions[NbQ-1].correctAnswer){
+        Resultat++;
+    }
+    NbQ++;
+
+    rempliData();
+})
+
+option2.addEventListener('click',(e)=>{
+    if(e.target.textContent==Questions[NbQ-1].correctAnswer)
+        Resultat++;
+    NbQ++;
+    rempliData();
+})
+option3.addEventListener('click',(e)=>{
+    if(e.target.textContent==Questions[NbQ-1].correctAnswer){    
+        Resultat++;
+    }
+    NbQ++;
+    rempliData();
+})
+
 rempliData();
 
 const next=document.getElementById("next");
 const previous=document.getElementById("previous");
+
+
 next.addEventListener("click",function(e){
 
 if(NbQ < Questions.length){
@@ -146,13 +176,17 @@ if(NbQ>1){
         rempliData()
     }
     if(NbQ==1){
-        previous.style.display="none";  
-        next.style.display="block"
+        previous.style.display="none";
+        next.style.display="block";
     }
 
+})
+const start=document.getElementById("startbtn");
 
 
 
-}
-)
+start.addEventListener('click',()=>{
+    start.style.display="none";
 
+    
+})
